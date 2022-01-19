@@ -1,0 +1,22 @@
+import math
+
+# Function:
+def f(x):
+	return 10 - 3 * x ** 2
+	
+# Choosing preferences:
+a = float(input("Enter lower limit (Give -1): "))
+b = float(input("Enter upper limit (Give 3): "))
+n = int(input("Enter total number of bisections to be considered (Give 4): "))
+h = (b - a)/n
+
+I = f(a) +f(b) #Step 1: 7+(10-27)=7-17=-10
+for i in range(1, n):
+	#print(i//2,i/2)
+	if abs(i//2 - i/2)<0.2:
+		I = I + 2 * f(a + i * h) #Step 3:f(a+2h)=f(1)=7 [I=10 +4*7=10+28=38] 
+	else:
+		I = I + 4 * f(a + i * h) #Step 2: f(a+h)=f(0)=10 [I=-10+2*10=10] #Step 4: f(a+3h)=f(2)=-2 [I=38-2*2=34]
+I = I * h / 3 
+print(I, " is the value of the integration.")
+
