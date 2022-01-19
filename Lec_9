@@ -1,0 +1,12 @@
+def f(x):
+	return 10 - 3 * x ** 2
+	
+a = -1
+b = 3
+n = 4
+h = (b - a)//n
+I = f(a) + f(b)
+for i in range(0, n * h,2):
+	I += 2 * f(a + i * h) + 4 * f(a + (i + 1) * h)
+I = I * h / 3 
+print(I)
