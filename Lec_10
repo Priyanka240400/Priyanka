@@ -1,0 +1,54 @@
+n = int(input("Enter the number of points whose data is available: "))
+xn, yn = [], []
+
+for i in range (1, n + 1):
+    xn.append(float(input("Enter the value of independent variable in data point " + str(i) + ": ")))
+    yn.append(float(input("Enter the value of dependent variable in data point " + str(i) + ": ")))
+    
+x = float(input("Enter the value of independent variable at which you want to know the value of dependent variable: "))
+
+s = 1
+for j in range (n):
+    s *= (x - xn[j]) # 1*(1.5-0)*(1.5-1)*(1.5-2)=1.5*0.5*(-0.5) #-3/8
+    
+d = []
+for p in range (n): #p = 0, 1, 2
+    dr = x - xn[p] #1 dr = 1.5-0 = 1.5 #2 #3
+    for q in range (n): # q = 0, 1, 2
+        if p != q: #1 n = 1,2
+            dr *= (xn[p] - xn[q]) #1 dr = 1.5 *(0-1)*(0-2)) = 3
+    d.append (dr)
+
+def f(x):
+    y=0
+    for k in range (n):
+        y += s * yn[k] / d[k]
+    return y
+    
+print("The value of the dependent variable is", f(x), "when the value of independent value is", x, ".")
+print("The exact value for the case is" , 2**x, ".")
+
+'''Output: 
+Enter the number of points whose data is available: 
+3
+Enter the value of independent variable in data point 1: 
+0
+Enter the value of dependent variable in data point 1: 
+1
+Enter the value of independent variable in data point 2: 
+1
+Enter the value of dependent variable in data point 2: 
+2
+Enter the value of independent variable in data point 3: 
+2
+Enter the value of dependent variable in data point 3: 
+4
+Enter the value of independent variable at which you want to know the value of dependent variable: 
+1.5
+The value of the dependent variable is 2.875 when the value of independent value is 1.5 .
+The exact value for the case is 2.8284271247461903 .
+
+
+** Process exited - Return Code: 0 **
+Press Enter to exit terminal
+'''
